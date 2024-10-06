@@ -103,9 +103,12 @@ rosidl_generate_interfaces(${PROJECT_NAME}
     std_msgs
 )
 
+# rosidl_get_typesupport_target(cpp_typesupport_target "${PROJECT_NAME}" "rosidl_typesupport_cpp")
+
 include_directories(include)
 add_library(${PROJECT_NAME}_lib src/ublox_msgs.cpp)
-rosidl_target_interfaces(${PROJECT_NAME}_lib ${PROJECT_NAME} "rosidl_typesupport_cpp")
+target_link_libraries(${PROJECT_NAME}_lib PUBLIC "${PROJECT_NAME}__rosidl_typesupport_cpp")
+# rosidl_target_interfaces(${PROJECT_NAME}_lib ${PROJECT_NAME} "rosidl_typesupport_cpp")
 ament_target_dependencies(${PROJECT_NAME}_lib
   "ublox_serialization"
 )
